@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Listado de Actividades Deportivas{% endblock %}
+
+{% block contenido %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold mb-0">Actividades Deportivas</h2>
+    <a href="{% url 'reservas:agregar_actividad' %}" class="btn btn-primary">+ Nueva Actividad</a>
+</div>
+
+<div class="row">
+    {% for act in actividades %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title text-primary fw-bold">{{ act.nombre|title }}</h5>
+                    <p class="card-text text-muted flex-grow-1">
+                        {{ act.descripcion|default:"Sin descripción detallada."|truncatewords:15 }}
+                    </p>
+                    <ul class="list-unstyled my-2 border-top pt-2">
+                        <li><strong>Lugar:</strong> {{ act.lugar }}</li>
+                        <li><strong>Cupo:</strong> <span class="badge bg-info text-dark">{{ act.cupo }} personas</span></li>
+                    </ul>
+                    <a href="{% url 'reservas:detalle_actividad' act.id %}" class="btn btn-outline-primary btn-sm mt-2 w-100">
+                        Ver detalle completo
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <div class="alert alert-warning text-center py-4">
+                <h5>No se encontraron actividades registradas.</h5>
+                <a href="{% url 'reservas:agregar_actividad' %}" class="btn btn-warning mt-2">Registrar la primera actividad</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

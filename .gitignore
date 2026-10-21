@@ -1,0 +1,15 @@
+# Entorno virtual
+deportes/
+venv/
+env/
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos del sistema operativo y VS Code
+.vscode/
+.DS_Store
+Thumbs.db

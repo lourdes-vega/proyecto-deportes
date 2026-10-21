@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Registrar Nueva Actividad{% endblock %}
+
+{% block contenido %}
+<div class="row justify-content-center">
+    <div class="col-md-7">
+        <div class="card shadow-sm border-0">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="card-title mb-0">Registrar Nueva Actividad Deportiva</h4>
+            </div>
+            <div class="card-body p-4">
+                <form method="POST">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label fw-bold">Nombre de la actividad:</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Vóley, Pádel, Natación..." required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcion" class="form-label fw-bold">Descripción:</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Detalles de la disciplina..."></textarea>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-7 mb-3">
+                            <label for="lugar" class="form-label fw-bold">Lugar:</label>
+                            <input type="text" class="form-control" id="lugar" name="lugar" placeholder="Ej: Polideportivo Cubierto, Cancha 2..." required>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="cupo" class="form-label fw-bold">Cupo máximo:</label>
+                            <input type="number" class="form-control" id="cupo" name="cupo" min="1" placeholder="Ej: 20" required>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-4">
+                        <a href="{% url 'reservas:lista_actividades' %}" class="btn btn-outline-secondary">Volver al listado</a>
+                        <button type="submit" class="btn btn-success px-4">Guardar Actividad</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
